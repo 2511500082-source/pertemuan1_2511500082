@@ -51,7 +51,7 @@ switch ($method) {
 
             $search = $_GET['search'] ?? "";
             //joker LIKE disambung di PHP, bukan di tempel di SQL
-            $term = "..%" . $search . "%..";
+            $term = "%" . $search . "%";
 
             $stmt= mysqli_prepare($koneksi, "SELECT m.id, m.nama, m.nim, j.nama_jurusan AS jurusan FROM mahasiswa m LEFT JOIN jurusan j on m.jurusan_id = j.id WHERE m.nama LIKE ? OR m.nim LIKE ? ORDER BY m.id DESC");
             mysqli_stmt_bind_param($stmt, "ss", $term, $term);
